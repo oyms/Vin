@@ -7,6 +7,36 @@ public partial struct Vin
 {
     private ReadOnlySpan<char> Clean(ReadOnlySpan<char> value)
     {
-      return Helper.Clean.RemoveNonLettersOrDigits(value);   
+        var buffer = new char[value.Length];
+
+        int written = 0;
+        for (int i = 0; i < value.Length; i++)
+        {
+            char c = value[i];
+
+            if (!char.IsLetterOrDigit(c))
+                continue;
+
+            if ((uint)(c - 'a') <= ('z' - 'a'))
+                c = (char)(c - 32);
+            else
+                c = char.ToUpperInvariant(c);
+
+            c = c switch
+            {
+                'I' => '1',
+                'O' => '0',
+                _ => c
+            };
+
+            buffer[written++] = c;
+        }
+
+        return buffer.AsSpan(0, written);
+    }
+
+    private bool ValueIsValid(ReadOnlySpan<char> value)
+    {
+        return value.Length == 17;
     }
 }
