@@ -2,6 +2,10 @@
 
 namespace Skaar.Vin;
 
+/// <summary>
+/// A value type representing a VIN (Vehicle Identification Number).
+/// </summary>
+/// <seealso href="https://en.wikipedia.org/wiki/Vehicle_identification_number"/>
 [ValueType]
 public partial struct Vin
 {
