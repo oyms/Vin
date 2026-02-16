@@ -15,4 +15,15 @@ public class ParsingTests
         Vin.TryParse(input, null, out var vin).ShouldBe(success);
         vin.ToString().ShouldBe(expected);
     }
+    
+    [Fact]
+    public void Equal_TwoEqualValues_ComparesEqual()
+    {
+        var vin1 = Vin.Parse("WB1051808BZV83859");
+        var vin2 = Vin.Parse("wbi051808bzv83859");
+        
+        vin1.Equals(vin2).ShouldBeTrue();
+        vin1.GetHashCode().ShouldBe(vin2.GetHashCode());
+        (vin1 == vin2).ShouldBeTrue();
+    }
 }

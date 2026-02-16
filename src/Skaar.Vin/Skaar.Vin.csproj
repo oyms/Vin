@@ -9,8 +9,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="Skaar.ValueType" Version="3.0.0" />
-      <PackageReference Update="Microsoft.SourceLink.GitHub" Version="10.0.103" />
+      <PackageReference Include="Skaar.ValueType" Version="3.0.1" />
     </ItemGroup>
 
 </Project>
