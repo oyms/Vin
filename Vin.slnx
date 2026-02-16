@@ -2,6 +2,7 @@
   <Folder Name="/SolutionItems/">
     <File Path="LICENSE" />
     <File Path="README.md" />
+    <File Path="src\CommonProps.targets" />
   </Folder>
   <Project Path="src/Skaar.Vin/Skaar.Vin.csproj" />
   <Project Path="tests/Skaar.Vin.Tests/Skaar.Vin.Tests.csproj" />
