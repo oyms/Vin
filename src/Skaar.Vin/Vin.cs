@@ -57,4 +57,14 @@ public partial struct Vin
     /// </summary>
     /// <seealso href="https://standards.iso.org/iso/3780/ed-4/en/Current%20WMI%20World%20Codes%20chart%204.13.21.pdf"/>
     public Model.Geographic.Country Country => IsValid ? Model.Geographic.Helper.GetCountry(_value.Span) : default;
+    
+    /// <summary>
+    /// Manufacturer, based on the first three characters of the VIN (the WMI - World Manufacturer Identifier)
+    /// </summary>
+    /// <remarks>Based on
+    /// <see href="https://en.wikibooks.org/wiki/Vehicle_Identification_Numbers_(VIN_codes)/World_Manufacturer_Identifier_(WMI)"/>.
+    /// The data is incomplete and may not be up to date, but it should cover the most common manufacturers.
+    /// It is also possible that some manufacturers are missing or misclassified, especially for less common or older vehicles.
+    /// </remarks>
+    public string? Manufacturer => IsValid ? Model.Manufacturer.Helper.GetManufacturer(_value.Span) : null;
 }
