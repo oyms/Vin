@@ -1,6 +1,7 @@
 ﻿using Skaar.ValueType;
+using Skaar.VehicleData.Model;
 
-namespace Skaar.Vin;
+namespace Skaar.VehicleData;
 
 /// <summary>
 /// A value type representing a VIN (Vehicle Identification Number).
@@ -30,6 +31,7 @@ public partial struct Vin
             {
                 'I' => '1',
                 'O' => '0',
+                'Q' => '0',
                 _ => c
             };
 
@@ -43,4 +45,16 @@ public partial struct Vin
     {
         return value.Length == 17;
     }
+
+    /// <summary>
+    /// The geographic region (based on the first character of the VIN)
+    /// </summary>
+    /// <seealso href="https://standards.iso.org/iso/3780/ed-4/en/Current%20WMI%20World%20Codes%20chart%204.13.21.pdf"/>
+    public Model.Geographic.Area GeographicArea => IsValid ? Model.Geographic.Helper.GetArea(_value.Span) : default;
+    
+    /// <summary>
+    /// The country (based on the first and second character of the VIN)
+    /// </summary>
+    /// <seealso href="https://standards.iso.org/iso/3780/ed-4/en/Current%20WMI%20World%20Codes%20chart%204.13.21.pdf"/>
+    public Model.Geographic.Country Country => IsValid ? Model.Geographic.Helper.GetCountry(_value.Span) : default;
 }

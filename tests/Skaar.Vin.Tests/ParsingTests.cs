@@ -1,6 +1,6 @@
 using Shouldly;
 
-namespace Skaar.Vin.Tests;
+namespace Skaar.VehicleData.Tests;
 
 public class ParsingTests
 {
