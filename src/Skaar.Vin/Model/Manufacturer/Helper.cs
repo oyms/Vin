@@ -14,6 +14,12 @@ static class Helper
         }
         return dict!.GetValueOrDefault(value[..3].ToString());
     }
+    
+    public static bool IsSmallManufacturer(ReadOnlySpan<char> value)
+    {
+        if (value.Length < 3) return false;
+        return value[2] == '9';
+    }
 
     private static Dictionary<string, string> CreateDictionary()
     {

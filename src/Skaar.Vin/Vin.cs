@@ -1,5 +1,6 @@
 ﻿using Skaar.ValueType;
 using Skaar.VehicleData.Model;
+using Helper = Skaar.VehicleData.Model.VehicleIdentification.Helper;
 
 namespace Skaar.VehicleData;
 
@@ -67,4 +68,24 @@ public partial struct Vin
     /// It is also possible that some manufacturers are missing or misclassified, especially for less common or older vehicles.
     /// </remarks>
     public string? Manufacturer => IsValid ? Model.Manufacturer.Helper.GetManufacturer(_value.Span) : null;
+    
+    /// <summary>
+    /// Model year (usually based on the 10th character of the VIN, but may be missing for European vehicles)
+    /// </summary>
+    public Year? ModelYear => IsValid ? Model.ModelYear.Helper.GetModelYear(_value.Span) : null;
+    
+    /// <summary>
+    /// Plant code (usually based on the 11th character of the VIN, but may be missing for non-North American and non-Chinese vehicles)
+    /// </summary>
+    public char? PlantCode => IsValid ? Model.Plant.Helper.GetPlantCode(_value.Span) : null;
+
+    /// <summary>
+    /// Vehicle's serial number or production number (usually based on the last 6 characters of the VIN, but may be missing for non-North American and non-Chinese vehicles)
+    /// </summary>
+    public string? ProductionNumber => IsValid ? Helper.GetProductionNumber(_value.Span) : null;
+    
+    /// <summary>
+    /// The last section, identifying the vehicle. Depending on the manufacturer and region, this may be based on different characters of the VIN, but it is usually the last 6 to 8 characters. It may be missing for some vehicles, especially older or European ones.
+    /// </summary>
+    public string? VehicleIdentifierSection => IsValid ? Model.VehicleIdentification.Helper.GetVehicleIdentifierSection(_value.Span)  : null;
 }
