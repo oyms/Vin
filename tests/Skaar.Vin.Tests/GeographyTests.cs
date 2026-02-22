@@ -1,9 +1,11 @@
+using System.Globalization;
+using ISO._3166;
 using Shouldly;
 using Skaar.VehicleData.Model.Geographic;
 
 namespace Skaar.VehicleData.Tests;
 
-public class GeographyTests
+public class GeographyTests(ITestOutputHelper testOutputHelper)
 {
     [Theory]
     // Africa
@@ -133,7 +135,7 @@ public class GeographyTests
     // South America
     [InlineData("8A000000000000000", Area.SouthAmerica, Country.Argentina)]
     [InlineData("8F000000000000000", Area.SouthAmerica, Country.Chile)]
-    [InlineData("8L000000000000000", Area.SouthAmerica, Country.Equador)]
+    [InlineData("8L000000000000000", Area.SouthAmerica, Country.Ecuador)]
     [InlineData("8S000000000000000", Area.SouthAmerica, Country.Peru)]
     [InlineData("8X000000000000000", Area.SouthAmerica, Country.Venezuela)]
     [InlineData("82A00000000000000", Area.SouthAmerica, Country.Bolivia)]
@@ -148,5 +150,20 @@ public class GeographyTests
 
         vin.GeographicArea.ShouldBe(expectedArea);
         vin.Country.ShouldBe(expectedCountry);
+    }
+    
+    [Fact]
+    public void Country_EnumValuesHaveCountryCodes_MappedToCountry()
+    {
+        foreach (var country in Enum.GetValues<Country>().Where(c => c > Country.Undefined))
+        {
+            var code = country.GetIsoCountryCode();
+            var name = country.GetDisplayName();
+            code.ShouldNotBeEmpty(customMessage: $"Enum value for {country} does not have an IsoCountryCode attribute");
+            var expected = CountryCodesResolver.GetByAlpha2Code(code);
+            expected.ShouldNotBeNull(customMessage: $"IsoCountryCode {code} for {country} does not map to a valid culture");
+            testOutputHelper.WriteLine($"{country} {code} {name} {expected.Name}");
+            expected.Name.ShouldBe(name, StringCompareShould.IgnoreCase);
+        }
     }
 }

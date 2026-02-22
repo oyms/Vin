@@ -27,6 +27,7 @@
     </ItemGroup>
 
     <ItemGroup>
+        <PackageReference Include="ISO.3166.CountryCodes" Version="1.0.3" />
         <PackageReference Include="Microsoft.NET.Test.Sdk" Version="18.0.1" />
         <PackageReference Include="ObjectDumper.NET" Version="4.3.2" />
         <PackageReference Include="Shouldly" Version="4.3.0" />

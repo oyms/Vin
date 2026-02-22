@@ -187,7 +187,7 @@ static class Helper
             //South America
             ('8', >= 'A' and <= 'E') => Country.Argentina,
             ('8', >= 'F' and <= 'G') => Country.Chile,
-            ('8', >= 'L' and <= 'N') => Country.Equador,
+            ('8', >= 'L' and <= 'N') => Country.Ecuador,
             ('8', >= 'S' and <= 'T') => Country.Peru,
             ('8', >= 'X' and <= 'Z') => Country.Venezuela,
             ('8', '2') => Country.Bolivia,
