@@ -3,7 +3,7 @@
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
         <NoWarn>$(NoWarn);CS1591;CA1822</NoWarn>
         <AssemblyVersion>$(Version)</AssemblyVersion>
-        <VersionPrefix>1.0.0</VersionPrefix>
+        <VersionPrefix>1.0.1</VersionPrefix>
         <Product>Vin</Product>
         <Authors>Skaar</Authors>
         <Description>A value type representing a VIN number</Description>
@@ -25,6 +25,7 @@
             0.5.0: Country codes and display name
             0.5.1: Update manufacturer table
             1.0.0: Updated documentation
+            1.0.1: Update dependencies
         </PackageReleaseNotes>
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <IsPackable>true</IsPackable>
